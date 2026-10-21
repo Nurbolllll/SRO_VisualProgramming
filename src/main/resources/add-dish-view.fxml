@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" prefWidth="350" prefHeight="300" xmlns:fx="http://javafx.com/fxml" fx:controller="app.AddDishController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Добавление нового блюда" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+    <TextField fx:id="nameField" promptText="Наименование блюда" />
+    <TextField fx:id="categoryField" promptText="Категория (например: Напитки)" />
+    <TextField fx:id="priceField" promptText="Цена (тг)" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Сохранить" onAction="#handleSave" style="-fx-base: #4CAF50; -fx-text-fill: white;" />
+        <Button text="Отмена" onAction="#handleCancel" />
+    </HBox>
+</VBox>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:controller="app.MainController" xmlns:fx="http://javafx.com/fxml" prefWidth="950" prefHeight="550">
+
+    <!-- Верхняя панель: Меню и Панель инструментов -->
+    <top>
+        <VBox>
+            <MenuBar>
+                <menus>
+                    <Menu text="Файл">
+                        <items>
+                            <MenuItem text="Очистить заказ" onAction="#handleClearOrder" />
+                            <SeparatorMenuItem />
+                            <MenuItem text="Выход" onAction="#handleExit" />
+                        </items>
+                    </Menu>
+                    <Menu text="Справка">
+                        <items>
+                            <MenuItem text="О программе" onAction="#handleAbout" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+            <ToolBar>
+                <items>
+                    <Button text="Добавить в заказ" onAction="#handleAddButton" />
+                    <Button text="+ Новое блюдо" onAction="#handleOpenAddDialog" />
+                    <Button text="Убрать позицию" onAction="#handleRemoveButton" />
+                    <Button text="Очистить" onAction="#handleClearOrder" />
+                    <Separator />
+                    <Label text="Поиск:" />
+                    <TextField fx:id="searchField" promptText="Введите блюдо..." onKeyReleased="#handleSearch" />
+                </items>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <!-- Центр: Таблицы меню и текущего заказа -->
+    <center>
+        <HBox spacing="15" alignment="CENTER">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <!-- Левая колонка: Меню -->
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="Меню ресторана (выберите блюдо):" style="-fx-font-weight: bold;" />
+                <TableView fx:id="menuTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="nameCol" text="Наименование" prefWidth="180" />
+                        <TableColumn fx:id="categoryCol" text="Категория" prefWidth="120" />
+                        <TableColumn fx:id="priceCol" text="Цена (тг)" prefWidth="100" />
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Кнопки по центру -->
+            <VBox spacing="10" alignment="CENTER">
+                <Button text="===>" onAction="#handleAddButton" prefWidth="60" />
+                <Button text="&lt;---" onAction="#handleRemoveButton" prefWidth="60" />
+            </VBox>
+
+            <!-- Правая колонка: Заказ -->
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="Ваш текущий заказ:" style="-fx-font-weight: bold;" />
+                <TableView fx:id="orderTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="orderNameCol" text="Блюдо" prefWidth="180" />
+                        <TableColumn fx:id="orderQtyCol" text="Кол-во" prefWidth="70" />
+                        <TableColumn fx:id="orderPriceCol" text="Сумма" prefWidth="100" />
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+    </center>
+
+    <!-- Нижняя часть: Итого и Строка состояния -->
+    <bottom>
+        <VBox>
+            <HBox spacing="20" alignment="CENTER_RIGHT" style="-fx-padding: 10; -fx-background-color: #f4f4f4;">
+                <Label fx:id="totalLabel" text="Итого: 0.00 тг" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                <Button text="Оформить заказ" onAction="#handleCheckout" style="-fx-base: #4CAF50; -fx-text-fill: white;" />
+            </HBox>
+            <HBox style="-fx-padding: 5; -fx-background-color: #e0e0e0;">
+                <Label text="Статус: Приложение готово к работе" fx:id="statusBarLabel" />
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>
